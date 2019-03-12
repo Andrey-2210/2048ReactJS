@@ -33,7 +33,10 @@
     transform: rotate(360deg);
   }
 }
-
+h5{
+  margin-top: 0;
+  padding-top: 20px;
+}
 .board{
   background: #bbada0;
   width: 400px;
