@@ -1,11 +1,12 @@
-const getRandomInt = (min, max) =>
-    Math.floor(Math.random() * (max - min)) + min;
+
+// const getRandomInt = (min, max) =>
+//     Math.floor(Math.random() * (max - min)) + min;
 
 const getRandomIntRange = (range) =>
     Math.floor(Math.random() * range);
 
 class Board {
-    constructor(options) {
+    constructor() {
         this.options = {
             size: 4
         };
@@ -152,4 +153,4 @@ class Board {
     }
 }
 
-export default new Board;
+export default new Board();
