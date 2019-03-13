@@ -3,7 +3,6 @@ import Board from './logics/main';
 import './App.css';
 import Row from './components/Row';
 
-
 class App extends Component {
 
     state = {
@@ -12,12 +11,11 @@ class App extends Component {
       score: 0
     }
   
-
-  
   updateBoard(){
     this.setState({board: Board.getBoard,
       score: Board.getScore});
   }
+
   componentWillUnmount(){
     window.removeEventListener("keyup", this.keyHandling);
   }
@@ -41,8 +39,6 @@ class App extends Component {
       case 37:  //left
         Board.moved('left');
         this.updateBoard();
-
-
         break;
       case 39:  //right
         Board.moved('right');
@@ -51,6 +47,7 @@ class App extends Component {
       default:
         break;
     }
+    
   }
 
   render() {
@@ -71,3 +68,4 @@ class App extends Component {
 }
 
 export default App;
+
