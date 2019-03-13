@@ -10,6 +10,7 @@ class App extends Component {
       size: 4,
       score: 0
     }
+    
   restartGame = () =>{
     Board.restartGame();
     this.updateBoard();
@@ -57,7 +58,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="info">
-          <h5 className="score">Score: {score}</h5>
+          <h5 className="score">Score: <b>{score}</b></h5>
           <button className="restart" onClick={this.restartGame}>Restart</button>
         </div>
         <div className="board">
