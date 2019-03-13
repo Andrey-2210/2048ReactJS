@@ -1,6 +1,8 @@
 
 // const getRandomInt = (min, max) =>
 //     Math.floor(Math.random() * (max - min)) + min;
+const getRandomNumber = () =>
+    Math.random() >  0.3 ? 2 : 4; 
 
 const getRandomIntRange = (range) =>
     Math.floor(Math.random() * range);
@@ -12,6 +14,7 @@ class Board {
         };
         this.board = null;
         this.score = 0;
+        this.addRandom = true;
     }
 
     createBoard() {
@@ -79,25 +82,27 @@ class Board {
 
     moveRight() {
         let array = this.board;
+        // let moved = false;
         for (let r = 0; r < this.options.size; r++)
             for (let c = 0; c < this.options.size - 1; c++) {
                 if (array[r][c] !== 0 && array[r][c + 1] === array[r][c]) {
                     array[r][c + 1] = array[r][c] * 2;
                     this.score += array[r][c] * 2;
                     array[r][c] = 0;
+                    // moved = true;
                 }
                 if (array[r][c + 1] === 0) {
                     array[r][c + 1] = array[r][c];
                     array[r][c] = 0;
+                    // moved = true;
                 }
             }
+        // this.addRandom = moved;
         this.board = array;
 
     }
 
     moved(direction) {
-        const empty = this.getEmptyCells();
-        if (empty.length > 0) {
             switch (direction) {
                 case "up":
                     this.moveUp();
@@ -115,9 +120,6 @@ class Board {
                     break;
             }
             this.addRandomCell();
-        } else {
-            this.gameOver();
-        }
     }
 
     getEmptyCells() {
@@ -127,20 +129,27 @@ class Board {
                 if (this.board[r][c] === 0)
                     dummyArr.push([r, c]);
         }
+        if (!dummyArr.length){
+            this.gameOver();
+        }
         return dummyArr;
     }
 
     addRandomCell() {
         const emptyCoordinates = this.getEmptyCells();
-        const randomCoordinate = emptyCoordinates[getRandomIntRange(emptyCoordinates.length)];
-        this.board[randomCoordinate[0]][randomCoordinate[1]] = 2;
+        if (emptyCoordinates.length){            
+            const randomCoordinate = emptyCoordinates[getRandomIntRange(emptyCoordinates.length)];
+            this.board[randomCoordinate[0]][randomCoordinate[1]] = getRandomNumber();
+        }
     }
 
     gameOver() {
-        alert('You lose');
         this.board = null;
         this.score = 0;
+        this.addRandom = false;
+        alert('You lose');  
         this.createBoard();
+        
     }
 
     /// GETTERS

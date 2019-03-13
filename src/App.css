@@ -41,7 +41,7 @@ h5{
   background: #bbada0;
   width: 400px;
   padding: 10px;
-  border-radius: 6px;
+  border-radius: 4px;
   margin: 0 auto;
 }
 .board__row{
@@ -70,3 +70,42 @@ h5{
   background: rgba(238, 228, 218, 0.35);
 }
 
+.color-4{
+  background: #ede0c8;
+}
+.color-8{
+  color: #f9f6f2;
+  background: #f2b179;
+}
+.color-16{
+  color: #f9f6f2;
+  background: #f59563;
+}
+.color-32{
+  color: #f9f6f2;
+  background: #f67c5f;
+}
+.color-64{
+  color: #f9f6f2;
+  background: #f67c5f;
+}
+.color-128{
+  color: #f9f6f2;
+  background: #edcf72;
+}
+.color-256{
+  color: #f9f6f2;
+  background: #edcc61;
+}
+.color-512{
+  color: #f9f6f2;
+  background: #edc850;
+}
+.color-1024{
+  color: #f9f6f2;
+  background: #edc53f;
+}
+.color-2048{
+  color: #f9f6f2;
+  background: #edc22e;
+}
