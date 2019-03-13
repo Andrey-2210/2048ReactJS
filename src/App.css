@@ -139,3 +139,37 @@
   border: none;
   cursor: pointer;
 }
+
+@media screen and (max-width: 520px){
+  body{
+    height: 100%;
+    overflow: hidden;
+  }
+  .App{
+    box-sizing: border-box;
+    height: 100%;
+    -webkit-touch-callout: none;
+    -ms-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: none;
+  }
+  .board{
+    -webkit-touch-callout: none;
+    -ms-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -ms-touch-action: none;
+    touch-action: none !important;
+    background: #bbada0;
+    width: 280px;
+
+  }
+  .board__cell{
+    width: 65px;
+    height: 65px;
+    font-size: 34px;
+  }
+}
