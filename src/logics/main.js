@@ -191,12 +191,15 @@ class Board {
     }
 
     gameOver() {
+        alert('You lose');  
+        this.restartGame();
+    }
+
+    restartGame(){
         this.board = null;
         this.score = 0;
-        this.addRandom = false;
-        alert('You lose');  
-        this.createBoard();
-        
+        this.addRandom = true;
+        this.createBoard();  
     }
 
     /// GETTERS

@@ -10,7 +10,10 @@ class App extends Component {
       size: 4,
       score: 0
     }
-  
+  restartGame = () =>{
+    Board.restartGame();
+    this.updateBoard();
+  }
   updateBoard(){
     this.setState({board: Board.getBoard,
       score: Board.getScore});
@@ -47,14 +50,16 @@ class App extends Component {
       default:
         break;
     }
-    
   }
 
   render() {
     const { board, score } = this.state;
     return (
       <div className="App">
-        <h5>Score: {score}</h5>
+        <div className="info">
+          <h5 className="score">Score: {score}</h5>
+          <button className="restart" onClick={this.restartGame}>Restart</button>
+        </div>
         <div className="board">
           {board.length > 0 && board.map((value,index) => 
             <div key={index} className="board__row">
