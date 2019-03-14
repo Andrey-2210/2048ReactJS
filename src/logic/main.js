@@ -1,5 +1,5 @@
 const getRandomNumber = () =>
-    Math.random() >  0.3 ? 2 : 4; 
+    Math.random() > 0.3 ? 2 : 4;
 
 const getRandomIntRange = (range) =>
     Math.floor(Math.random() * range);
@@ -30,9 +30,9 @@ class Board {
         let array = this.board;
         let row;
         let isMoved = false;
-        for(let c = 0; c < this.options.size; c++)
-            for(let r = 1; r < this.options.size; r++) 
-                if(array[r][c]) {
+        for (let c = 0; c < this.options.size; c++)
+            for (let r = 1; r < this.options.size; r++)
+                if (array[r][c]) {
                     row = r;
                     while (row - 1 >= 0) {
                         if (!array[row - 1][c]) {
@@ -42,15 +42,15 @@ class Board {
                             row--;
                         } else if (array[row][c] === array[row - 1][c]) {
                             array[row - 1][c] *= 2;
-                            this.score +=  array[row - 1][c];
+                            this.score += array[row - 1][c];
                             array[row][c] = 0;
                             isMoved = true;
                             break;
                         } else
-                            break;                        
+                            break;
                     }
                 }
-            
+
         this.addRandom = isMoved;
         this.board = array;
         this.addRandomCell();
@@ -61,10 +61,10 @@ class Board {
         let row;
         let isMoved = false;
 
-        for(let c = 0; c < this.options.size; c++)
-            for(let r = this.options.size - 2; r >= 0; r--) 
-                if(array[r][c]) {
-                    row = r;                   
+        for (let c = 0; c < this.options.size; c++)
+            for (let r = this.options.size - 2; r >= 0; r--)
+                if (array[r][c]) {
+                    row = r;
                     while (row + 1 < this.options.size) {
                         if (!array[row + 1][c]) {
                             array[row + 1][c] = array[row][c];
@@ -73,14 +73,14 @@ class Board {
                             row++;
                         } else if (array[row][c] === array[row + 1][c]) {
                             array[row + 1][c] *= 2;
-                            this.score +=  array[row + 1][c];
+                            this.score += array[row + 1][c];
                             array[row][c] = 0;
                             isMoved = true;
                             break;
                         } else
-                            break;                        
+                            break;
                     }
-                } 
+                }
 
         this.addRandom = isMoved;
         this.board = array;
@@ -92,9 +92,9 @@ class Board {
         let col;
         let isMoved = false;
 
-        for(let r = 0; r < this.options.size; r++)
-            for(let c = 1; c < this.options.size; c++) 
-                if(array[r][c]) {
+        for (let r = 0; r < this.options.size; r++)
+            for (let c = 1; c < this.options.size; c++)
+                if (array[r][c]) {
                     col = c;
                     while (col - 1 >= 0) {
                         if (!array[r][col - 1]) {
@@ -104,15 +104,15 @@ class Board {
                             col--;
                         } else if (array[r][col] === array[r][col - 1]) {
                             array[r][col - 1] *= 2;
-                            this.score +=  array[r][col - 1];
+                            this.score += array[r][col - 1];
                             array[r][col] = 0;
                             isMoved = true;
                             break;
                         } else
-                            break;                        
+                            break;
                     }
                 }
-        this.addRandom = isMoved;       
+        this.addRandom = isMoved;
         this.board = array;
         this.addRandomCell();
     }
@@ -122,9 +122,9 @@ class Board {
         let col;
         let isMoved = false;
 
-        for(let r = 0; r < this.options.size; r++)
-            for(let c = this.options.size - 2; c >= 0; c--) 
-                if(array[r][c]) {
+        for (let r = 0; r < this.options.size; r++)
+            for (let c = this.options.size - 2; c >= 0; c--)
+                if (array[r][c]) {
                     col = c;
                     while (col + 1 < this.options.size) {
                         if (!array[r][col + 1]) {
@@ -134,37 +134,37 @@ class Board {
                             col++;
                         } else if (array[r][col] === array[r][col + 1]) {
                             array[r][col + 1] *= 2;
-                            this.score +=  array[r][col + 1];
+                            this.score += array[r][col + 1];
                             array[r][col] = 0;
                             isMoved = true;
                             break;
                         } else
-                            break;                        
+                            break;
                     }
-                }      
+                }
 
-        this.addRandom = isMoved;        
+        this.addRandom = isMoved;
         this.board = array;
         this.addRandomCell();
     }
 
     moved(direction) {
-            switch (direction) {
-                case "up":
-                    this.moveUp();
-                    break;
-                case "down":
-                    this.moveDown();
-                    break;
-                case "left":
-                    this.moveLeft();
-                    break;
-                case "right":
-                    this.moveRight();                    
-                    break;
-                default:
-                    break;
-            }
+        switch (direction) {
+            case "up":
+                this.moveUp();
+                break;
+            case "down":
+                this.moveDown();
+                break;
+            case "left":
+                this.moveLeft();
+                break;
+            case "right":
+                this.moveRight();
+                break;
+            default:
+                break;
+        }
 
     }
 
@@ -179,27 +179,28 @@ class Board {
     }
 
     addRandomCell() {
-        const emptyCoordinates = this.getEmptyCells();        
-        if (emptyCoordinates.length){    
-            if (this.addRandom){
+        const emptyCoordinates = this.getEmptyCells();
+        if (emptyCoordinates.length) {
+            if (this.addRandom) {
                 const randomCoordinate = emptyCoordinates[getRandomIntRange(emptyCoordinates.length)];
                 this.board[randomCoordinate[0]][randomCoordinate[1]] = getRandomNumber();
             }
-            }else{
-                this.gameOver();
-            }
+        }
+        else {
+            this.gameOver();
+        }
     }
 
     gameOver() {
-        alert('You lose');  
+        alert('You lose');
         this.restartGame();
     }
 
-    restartGame(){
+    restartGame() {
         this.board = null;
         this.score = 0;
         this.addRandom = true;
-        this.createBoard();  
+        this.createBoard();
     }
 
     /// GETTERS

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Board from './logics/main';
+import Board from './logic/main';
 import './App.css';
 import Row from './components/Row';
 function getTouches(e) {
@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
       board: [],
       size: 4,
-      score: 0
+      score: 0,
+      record: 0
     }
     this.xTouch=null;
     this.yTouch=null;
@@ -26,8 +27,14 @@ class App extends Component {
     this.updateBoard();
   }
   updateBoard(){
-    this.setState({board: Board.getBoard,
-      score: Board.getScore});
+    this.setState({
+      board: Board.getBoard,
+      score: Board.getScore,
+      record: Board.getScore > this.state.record ? Board.getScore : this.state.record
+    }, () => {
+      if (this.state.record > localStorage.getItem('get-record-2048'))
+        localStorage.setItem('get-record-2048', this.state.record)
+    });
   }
 
   componentWillUnmount(){
@@ -38,8 +45,13 @@ class App extends Component {
     window.addEventListener("keyup", this.keyHandling);
     document.addEventListener("touchstart", this.touchStart,false);
     document.addEventListener("touchmove", this.touchMove,false);
-    Board.createBoard();
-    this.updateBoard(); 
+    this.setState({
+      record: localStorage.getItem('get-record-2048') ? localStorage.getItem('get-record-2048') : 0
+    }, () => {
+      Board.createBoard();
+      this.updateBoard(); 
+    })
+
   }
 
   keyHandling = (e) =>{
@@ -105,11 +117,12 @@ class App extends Component {
   }
 
   render() {
-    const { board, score } = this.state;
+    const { board, score, record } = this.state;
     return (
       <div className="App">
         <div className="info">
           <h5 className="score">Score: <b>{score}</b></h5>
+          <h5 className="score">Record: <b>{record}</b></h5>
           <button className="restart" onClick={this.restartGame}>Restart</button>
         </div>
         <div className="board">
